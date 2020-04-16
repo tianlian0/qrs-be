@@ -1,0 +1,26 @@
+#设置应用端口
+server:
+    port: 7999
+    servlet:
+        context-path: /qrs
+        session:
+            timeout: 8640000
+    tomcat:
+        max-http-post-size: -1
+        max-http-header-size: 8192
+spring:
+    devtools:
+        restart:
+            enabled: false
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        serialization:
+            write-dates-as-timestamps: false
+    http:
+        multipart:
+            max-file-size: -1
+            max-request-size: -1
+
+
+

@@ -1,3 +1,7 @@
+# eclipse files
+.classpath
+.project
+
 # Compiled class file
 *.class
 
@@ -19,5 +23,35 @@
 *.tar.gz
 *.rar
 
+# audio
+*.mp3
+*.wav
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Keystore files
+*.jks
+
+# target
+/target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+### VS Code ###
+.vscode/
+
+
+!.mvn/wrapper/maven-wrapper.jar
