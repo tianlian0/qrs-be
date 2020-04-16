@@ -36,7 +36,7 @@ public class VerifyController {
 
 	//全局数据库链接
 	private static Connection conn = null;
-	public static String database_pwd = "";
+	public static String database_pwd = "Jb71X96ql**yFW1s";
 	static {
 		try {
 			conn = DriverManager.getConnection(
@@ -119,52 +119,43 @@ public class VerifyController {
 
 	//更新设置
 	@RequestMapping(value = "/updateConfig")
-	@ResponseBody
-	public Map<String, String> updateConf(Map<String, String> config) {
-		Map<String, String> resMap = new HashMap<String, String>();
+	public String updateConf(String rtime, String spd, String pit, String vol, String per, String oldPassword, String newPassword) {
 		String sql = "";
 		String sql1 = "UPDATE q_config set c_rtime=?, c_spd=?, c_pit=?, c_vol=?, c_per=?, c_password=? where c_uuid=? and c_password=?";
 		String sql2 = "UPDATE q_config set c_rtime=?, c_spd=?, c_pit=?, c_vol=?, c_per=? where c_uuid=? and c_password=?";
-		if (config.containsKey("newPassword") && config.get("newPassword") != null && !config.get("newPassword").equals("")) {
+		if (newPassword != null && !newPassword.equals("")) {
 			sql = sql1;
 		}else {
 			sql = sql2;
 		}
 		try (PreparedStatement pst = conn.prepareStatement(sql);) {
-			pst.setString(1, config.get("rtime"));
-			pst.setString(2, config.get("spd"));
-			pst.setString(3, config.get("pit"));
-			pst.setString(4, config.get("vol"));
-			pst.setString(5, config.get("per"));
-			if (config.containsKey("newPassword") && config.get("newPassword") != null && !config.get("newPassword").equals("")) {
-				pst.setString(6, config.get("newPassword"));
+			pst.setString(1, rtime);
+			pst.setString(2, spd);
+			pst.setString(3, pit);
+			pst.setString(4, vol);
+			pst.setString(5, per);
+			if (newPassword != null && !newPassword.equals("")) {
+				pst.setString(6, newPassword);
 				pst.setString(7, ApplicationEntryPoint.uuid);
-				pst.setString(8, config.get("oldPassword"));
+				pst.setString(8, oldPassword);
 			}else {
 				pst.setString(6, ApplicationEntryPoint.uuid);
-				pst.setString(7, config.get("oldPassword"));
+				pst.setString(7, oldPassword);
 			}
 			int influe = pst.executeUpdate();
 			if (influe <= 0) {
-				resMap.put("code", "1");
-				resMap.put("msg", "旧密码错误");
-				return resMap;
+				return "configerror.html";
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			resMap.put("code", "1");
-			resMap.put("msg", "网络异常，更新失败");
-			return resMap;
+			return "configerror.html";
 		}
-		rtime = config.get("rtime");
-		spd = config.get("spd");
-		pit = config.get("pit");
-		vol = config.get("vol");
-		per = config.get("per");
-		password = config.get("newPassword");
-		resMap.put("code", "1");
-		resMap.put("msg", "更新成功");
-		return resMap;
+		this.rtime = rtime;
+		this.spd = spd;
+		this.pit = pit;
+		this.vol = vol;
+		this.per = per;
+		password = newPassword;
+		return "configsuccess.html";
 	}
 	
 	//获取设置
@@ -315,8 +306,7 @@ public class VerifyController {
 	
 	//登录
 	@RequestMapping(value = "/login")
-	@ResponseBody
-	public Map<String, String> login(String uname, String pwd) {
+	public String login(String uname, String pwd) {
 		Map<String, String> resMap = new HashMap<String, String>();
 		String sql2 = "SELECT c_createtime FROM q_config where c_uuid=? and c_username=? and c_password=?";
 		try (PreparedStatement pst = conn.prepareStatement(sql2);) {
@@ -327,19 +317,15 @@ public class VerifyController {
 				if (rs.next()) {
 					username = uname;
 					password = pwd;
-					resMap.put("code", "0");
-					resMap.put("msg", "登陆成功");
+					return "config.html";
 				}else {
-					resMap.put("code", "1");
-					resMap.put("msg", "用户名或密码错误");
+					return "loginerror.html";
 				}
 			}
 		} catch (SQLException e) {
-			resMap.put("code", "1");
-			resMap.put("msg", "未知错误");
 			e.printStackTrace();
+			return "loginerror.html";
 		}
-		return resMap;
 	}
 
 }
