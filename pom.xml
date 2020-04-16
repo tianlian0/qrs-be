@@ -88,6 +88,24 @@
     </dependencies>
 
     <build>
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+		        <includes>
+		            <include>**/**</include>
+		        </includes>
+	            <!-- 开启过滤，用指定的参数替换directory下的文件中的参数 -->
+		        <filtering>true</filtering>
+		    </resource>
+	        <resource>
+	            <directory>src/main/webapp</directory>
+	            <targetPath>META-INF/resources</targetPath>
+	            <includes>
+	                <include>**/**</include>
+	            </includes>
+	        </resource>
+	    </resources>
+	    
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -110,7 +128,23 @@
             <plugin>  
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-war-plugin</artifactId>
-			    </plugin>
+			 </plugin>
+            <plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <configuration>
+				 	<archive>
+					 	<manifest>
+					 		<addClasspath>true</addClasspath>
+					 		<mainClass>com.pg.faxapplication.Main</mainClass>
+					 	</manifest>
+					 	<manifestEntries>
+					 		<Class-Path>.</Class-Path>
+					 	</manifestEntries>
+				 	</archive>
+				 </configuration>
+			 </plugin>
+
 		</plugins>
         <finalName>qrs</finalName>
     </build>
