@@ -1,34 +1,19 @@
 package com.bjtu.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
+import com.bjtu.config.AppInfoConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.bjtu.ApplicationEntryPoint;
-import com.bjtu.Model.UserPic;
 import com.bjtu.service.TulingCommunicationByVoice;
 
 @Controller
@@ -36,7 +21,7 @@ public class VerifyController {
 
 	//全局数据库链接
 	private static Connection conn = null;
-	public static String database_pwd = "";
+	public static String database_pwd = AppInfoConfig.getDatabasePwd();
 	static {
 		try {
 			conn = DriverManager.getConnection(

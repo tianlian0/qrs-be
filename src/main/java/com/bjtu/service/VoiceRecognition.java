@@ -1,6 +1,7 @@
 package com.bjtu.service;
 
 import com.baidu.aip.speech.AipSpeech;
+import com.bjtu.config.AppInfoConfig;
 import org.json.JSONObject;
  
 import java.io.File;
@@ -11,9 +12,9 @@ import java.io.File;
  */
 public class VoiceRecognition {
     // 设置APPID/AK/SK
-    public static final String APP_ID = "";
-    public static final String API_KEY = "";
-    public static final String SECRET_KEY = "";
+    public static final String APP_ID = AppInfoConfig.getBaiduVoiceAppId();
+    public static final String API_KEY = AppInfoConfig.getBaiduVoiceAppKey();
+    public static final String SECRET_KEY = AppInfoConfig.getBaiduVoiceSecretKey();
  
     private static final AipSpeech aipSpeech = getAipSpeech();
  

@@ -4,6 +4,7 @@ import com.baidu.aip.speech.AipSpeech;
 import com.baidu.aip.speech.TtsResponse;
 import com.baidu.aip.util.Util;
 import com.bjtu.ApplicationEntryPoint;
+import com.bjtu.config.AppInfoConfig;
 import com.bjtu.controller.VerifyController;
 
 import javazoom.jl.player.Player;
@@ -20,9 +21,9 @@ import java.util.HashMap;
  */
 public class VoiceCompose {
     // 设置APPID/AK/SK
-    public static final String APP_ID = "";
-    public static final String API_KEY = "";
-    public static final String SECRET_KEY = "";
+    public static final String APP_ID = AppInfoConfig.getBaiduVoiceAppId();
+    public static final String API_KEY = AppInfoConfig.getBaiduVoiceAppKey();
+    public static final String SECRET_KEY = AppInfoConfig.getBaiduVoiceSecretKey();
  
     private static final AipSpeech aipSpeech = getAipSpeech();
  
