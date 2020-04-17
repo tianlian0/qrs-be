@@ -63,9 +63,9 @@ public class VoiceRecorder{
  
     private AudioFormat getAudioFormat() {
         // 8000,11025,16000,22050,44100 采样率
-        float sampleRate = 8000F;
+        float sampleRate = 16000F;
         // 8,16 每个样本中的位数
-        int sampleSizeInBits = 8;
+        int sampleSizeInBits = 16;
         // 1,2 信道数（单声道为 1，立体声为 2，等等）
         int channels = 1;
         // true,false
