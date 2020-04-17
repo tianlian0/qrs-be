@@ -20,7 +20,7 @@ public class FaceController {
     @RequestMapping(method = RequestMethod.GET, path = "/reg")
     @ResponseBody
     public ResponseData faceReg() {
-        return faceRegService.faceReg();
+        return faceRegService.start();
     }
 
     /**
