@@ -2,125 +2,264 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Spica Admin</title>
-  <!-- base:css -->
-  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spica Admin</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png"/>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function addUser(userId) {
+            $.ajax({
+                url: "/qrs/face/add?userId=" + userId,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    var info = data;
+                    if (info.code == 200) {
+                        updateUserList();
+                    } else {
+                        alert("添加失败");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("添加失败，请重试！");
+                },
+            });
+        }
+
+        function updateUser(userId) {
+            $.ajax({
+                url: "/qrs/face/add?userId=" + userId,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    var info = data;
+                    if (info.code == 200) {
+                        //updateUserList();
+                        alert("更新成功");
+                    } else {
+                        alert("更新失败，请重试！");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("更新失败，请重试！");
+                },
+            })
+        }
+
+        function deleteUser(userId) {
+            $.ajax({
+                url: "/qrs/face/delete?userId=" + userId,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    var info = data;
+                    if (info.code == 200) {
+                        updateUserList();
+                        alert("删除成功");
+                    } else {
+                        alert("删除失败，请重试！");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("删除失败，请重试！");
+                },
+            })
+        }
+
+        function delectAllUser() {
+            $.ajax({
+                url: "/qrs/face/deleteUserGroup",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    var info = data;
+                    if (info.code == 200) {
+                        updateUserList();
+                    } else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("删除失败，请重试！");
+                },
+            })
+        }
+
+        function updateUserList() {
+            $.ajax({
+                url: "/qrs/face/list",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    var info = data;
+                    if (info.code == 200) {
+                        var userList = info.data;
+                        var str = ""
+                        for (var i = 0, l = userList.length; i < l; i++) {
+                            str = str +
+                                "<tr>\n" +
+                                "    <td>" + i + "</td>\n" +
+                                "    <td>" + userList[i] + "</td>\n" +
+                                "    <td>\n" +
+                                "        <button onclick=\"updateUser('" + userList[i] + "')\" type=\"button\" class=\"btn btn-primary\">更新人脸</button>\n" +
+                                "        <button onclick=\"deleteUser('" + userList[i] + "')\" type=\"button\" class=\"btn btn-warning\">删除</button>\n" +
+                                "    </td>\n" +
+                                "</tr>\n";
+                        }
+                        $("#table_body").html(str);
+                        console.log(str);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.error("用户数据获取失败");
+                },
+            })
+        }
+
+        $(document).ready(function(){
+            $("#add_user_btn").click(function () {
+                var userId = $("#name_input").val();
+                console.log(userId);
+                if (typeof userId == "undefined" || userId == null || userId == "") {
+                    alert("请输入新用户姓名");
+                } else {
+                    addUser(userId);
+                    $("#name_input").val("");
+                }
+            });
+            $("#delete_all_btn").click(function () {
+                delectAllUser();
+            });
+        });
+        //初始化工作
+        updateUserList();
+
+    </script>
 </head>
 
 <body>
-  <div class="container-scroller d-flex">
+<div class="container-scroller d-flex">
     <!-- partial:./partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
-      <ul class="nav">
-        <li class="nav-item sidebar-category">
-          <p>语音助手</p>
-          <span></span>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="config.html">
-            <i class="mdi mdi-view-quilt menu-icon"></i>
-            <span class="menu-title">基本设置</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="man.html">
-            <i class="mdi mdi-emoticon menu-icon"></i>
-            <span class="menu-title">用户管理</span>
-          </a>
-        </li>
-      </ul>
+        <ul class="nav">
+            <li class="nav-item sidebar-category">
+                <p>语音助手</p>
+                <span></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="config.html">
+                    <i class="mdi mdi-view-quilt menu-icon"></i>
+                    <span class="menu-title">基本设置</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="man.html">
+                    <i class="mdi mdi-emoticon menu-icon"></i>
+                    <span class="menu-title">用户管理</span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">用户管理</h4>
-                  <p class="card-description">
-                    更新或添加用以人脸解锁语音助手的用户
-                  </p>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>用户ID</th>
-                          <th>姓名</th>
-                          <th>操作</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>张三</td>
-                          <td><button type="button" class="btn btn-primary">更新人脸</button> <button type="button" class="btn btn-warning">删除</button></td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>李四</td>
-                          <td><button type="button" class="btn btn-primary">更新人脸</button> <button type="button" class="btn btn-warning">删除</button></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <button type="button" class="btn btn-danger">删除所有用户</button>
-                  </div>
-                </div>
-                <div class="auth-form-light text-left py-5 px-4">
-                  <h6 class="font-weight-light">添加新用户</h6>
-                  <form class="pt-3">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-lg" id="uanme" placeholder="用户姓名">
-                    </div>
-                    <div class="mt-3">
-                      <a class="btn btn-success btn-lg font-weight-medium auth-form-btn" href="index.html">添加</a>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
-                <p class="text-center text-sm-left d-block d-sm-inline-block mb-0">Copyright © 2019 <a href="https://www.urbanui.com/" target="_blank">嵌入式智能语音助手</a>. All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </footer>
         <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">用户管理</h4>
+                                <p class="card-description">
+                                    更新或添加用以人脸解锁语音助手的用户
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>用户ID</th>
+                                            <th>姓名</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="table_body">
+                                        <!--<tr>
+                                            <td>1</td>
+                                            <td>张三</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary">更新人脸</button>
+                                                <button type="button" class="btn btn-warning">删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>李四</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary">更新人脸</button>
+                                                <button type="button" class="btn btn-warning">删除</button>
+                                            </td>
+                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                    <button id="delete_all_btn" type="button" class="btn btn-danger">删除所有用户</button>
+                                </div>
+                            </div>
+                            <div class="auth-form-light text-left py-5 px-4">
+                                <h6 class="font-weight-light">添加新用户</h6>
+                                <form class="pt-3">
+                                    <div class="form-group">
+                                        <input id="name_input" type="text" class="form-control form-control-lg"
+                                               placeholder="用户姓名">
+                                    </div>
+                                    <div class="mt-3">
+                                        <button id="add_user_btn" type="button" class="btn btn-success">添加</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
+                            <p class="text-center text-sm-left d-block d-sm-inline-block mb-0">Copyright © 2019 <a
+                                    href="https://www.urbanui.com/" target="_blank">嵌入式智能语音助手</a>. All rights reserved.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- base:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <!-- endinject -->
-  <!-- End custom js for this page-->
+</div>
+<!-- container-scroller -->
+<!-- base:js -->
+<script src="vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/template.js"></script>
+<!-- endinject -->
+<!-- End custom js for this page-->
 </body>
 
 </html>

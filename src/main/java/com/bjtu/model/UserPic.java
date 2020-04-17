@@ -1,4 +1,4 @@
-package com.bjtu.Model;
+package com.bjtu.model;
 
 import java.sql.Timestamp;
 
