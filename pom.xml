@@ -49,6 +49,21 @@
 		  <scope>provided</scope>
 		</dependency> 
 		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		<dependency>
+	        <groupId>org.apache.poi</groupId>
+	        <artifactId>poi-ooxml</artifactId>
+	        <version>3.9</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.poi</groupId>
+	        <artifactId>poi-scratchpad</artifactId>
+	        <version>3.9</version>
+	    </dependency>
+		<dependency>
 		    <groupId>com.baidu.aip</groupId>
 		    <artifactId>java-sdk</artifactId>
 		    <version>4.12.0</version>

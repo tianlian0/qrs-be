@@ -1,4 +1,4 @@
-package com.bjtu.model;
+package com.bjtu.Model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;

@@ -3,7 +3,7 @@ package com.bjtu.service;
 import com.baidu.aip.face.AipFace;
 import com.bjtu.ApplicationEntryPoint;
 import com.bjtu.controller.VerifyController;
-import com.bjtu.model.ResponseData;
+import com.bjtu.Model.ResponseData;
 import com.bjtu.utils.ImageUtil;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.FrameGrabber;

@@ -1,7 +1,7 @@
 package com.bjtu.controller;
 
 
-import com.bjtu.model.ResponseData;
+import com.bjtu.Model.ResponseData;
 import com.bjtu.service.FaceRegService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.bjtu.service;
 
 import java.io.File;
-import java.util.Scanner;
+//import java.util.Scanner;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -11,32 +11,31 @@ import javax.sound.sampled.TargetDataLine;
 
 /**
  * 录音，存储为WAV文件
- * @author admin_70 + haoranhaoshi
  */
 public class VoiceRecorder{
     AudioFormat audioFormat;
     TargetDataLine targetDataLine;
  
-    public static void main(String args[]) {
-        // 控制台方式
-        new VoiceRecorder().voiceRecorderInConsole();
-    }
- 
-    public void voiceRecorderInConsole() {
-        System.out.println("y开始n结束");
-        Scanner input = new Scanner(System.in);
-        String Sinput = input.next();
-        long testtime = System.currentTimeMillis();
-        if(Sinput.equals("y")){
-            captureAudio();// 调用录音方法
-        }
-        Scanner input_2 = new Scanner(System.in);
-        String Sinput_2 = input_2.next();
-        if(Sinput_2.equals("n")){
-            closeCaptureAudio();
-        }
-        System.out.println("录音了"+(System.currentTimeMillis()-testtime)/1000+"秒！");
-    }
+//    public static void main(String args[]) {
+//        // 控制台方式
+//        new VoiceRecorder().voiceRecorderInConsole();
+//    }
+// 
+//    public void voiceRecorderInConsole() {
+//        System.out.println("y开始n结束");
+//        Scanner input = new Scanner(System.in);
+//        String Sinput = input.next();
+//        long testtime = System.currentTimeMillis();
+//        if(Sinput.equals("y")){
+//            captureAudio();// 调用录音方法
+//        }
+//        Scanner input_2 = new Scanner(System.in);
+//        String Sinput_2 = input_2.next();
+//        if(Sinput_2.equals("n")){
+//            closeCaptureAudio();
+//        }
+//        System.out.println("录音了"+(System.currentTimeMillis()-testtime)/1000+"秒！");
+//    }
  
     public void closeCaptureAudio(){
         targetDataLine.stop();
@@ -66,9 +65,9 @@ public class VoiceRecorder{
         // 8000,11025,16000,22050,44100 采样率
         float sampleRate = 8000F;
         // 8,16 每个样本中的位数
-        int sampleSizeInBits = 16;
+        int sampleSizeInBits = 8;
         // 1,2 信道数（单声道为 1，立体声为 2，等等）
-        int channels = 2;
+        int channels = 1;
         // true,false
         boolean signed = true;
         // true,false 指示是以 big-endian 顺序还是以 little-endian 顺序存储音频数据。
