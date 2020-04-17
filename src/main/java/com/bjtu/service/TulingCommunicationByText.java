@@ -12,7 +12,7 @@ import com.bjtu.ApplicationEntryPoint;
 public class TulingCommunicationByText {
     private static final String requestUrl = "http://openapi.tuling123.com/openapi/api/v2";
 
-    public static final String apiKey = "";
+    public static final String apiKey = "951eb94062ee4fc7ab5f75f12c149ab6";
     private static final String userId = ApplicationEntryPoint.uuid; //"600394";
  
     private static final String contentType = "text/plain";

@@ -11,9 +11,9 @@ import java.io.File;
  */
 public class VoiceRecognition {
     // 设置APPID/AK/SK
-    public static final String APP_ID = "";
-    public static final String API_KEY = "";
-    public static final String SECRET_KEY = "";
+    public static final String APP_ID = "19358477";
+    public static final String API_KEY = "HHf0dKlB2h2DCEXkcpBqP54i";
+    public static final String SECRET_KEY = "hKp0zl0zU2qUuedN1lNxbuLLLG1TTQYw";
  
     private static final AipSpeech aipSpeech = getAipSpeech();
  
