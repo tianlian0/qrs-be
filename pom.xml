@@ -149,22 +149,6 @@
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-war-plugin</artifactId>
 			 </plugin>
-            <plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-jar-plugin</artifactId>
-			    <configuration>
-				 	<archive>
-					 	<manifest>
-					 		<addClasspath>true</addClasspath>
-					 		<mainClass>com.pg.faxapplication.Main</mainClass>
-					 	</manifest>
-					 	<manifestEntries>
-					 		<Class-Path>.</Class-Path>
-					 	</manifestEntries>
-				 	</archive>
-				 </configuration>
-			 </plugin>
-
 		</plugins>
         <finalName>qrs</finalName>
     </build>
