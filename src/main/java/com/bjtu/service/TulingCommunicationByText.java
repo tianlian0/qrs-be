@@ -19,11 +19,11 @@ public class TulingCommunicationByText {
  
     private static final String encoding = getContentType();
  
-    public static void main(String[] args){
-        TulingCommunicationByText tulingCommunicationByText = new TulingCommunicationByText();
-        String response = tulingCommunicationByText.getResponse("哈哈哈哈哈哈你快乐吗");
-        System.out.println(response);
-    }
+//    public static void main(String[] args){
+//        TulingCommunicationByText tulingCommunicationByText = new TulingCommunicationByText();
+//        String response = tulingCommunicationByText.getResponse("哈哈哈哈哈哈你快乐吗");
+//        System.out.println(response);
+//    }
  
     public String getResponse(String request){
         JSONObject perception = new JSONObject();

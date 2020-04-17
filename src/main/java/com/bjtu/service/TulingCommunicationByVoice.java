@@ -1,13 +1,13 @@
 package com.bjtu.service;
 
-import javafx.application.Application;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
+//import javafx.application.Application;
+//import javafx.geometry.Orientation;
+//import javafx.geometry.Pos;
+//import javafx.scene.Scene;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.Label;
+//import javafx.scene.layout.FlowPane;
+//import javafx.stage.Stage;
  
 /**
  * 按住按钮或者按住Ctrl说话
@@ -18,27 +18,27 @@ public class TulingCommunicationByVoice {
     private VoiceRecognition voiceRecognition = new VoiceRecognition();
     public VoiceRecorder voiceRecorder = new VoiceRecorder();
  
-    public void start(Stage primaryStage) {
-        Label label = new Label("按住按钮或者按住Ctrl说话");
-        Button button = new Button("按住说话");
-        FlowPane flowPane = new FlowPane(label, button);
-        flowPane.setAlignment(Pos.CENTER);
-        flowPane.setOrientation(Orientation.HORIZONTAL);
-        flowPane.setPrefHeight(80);
-        flowPane.setPrefWidth(200);
-        flowPane.setVgap(20);
- 
-        button.setOnMousePressed(event -> voiceRecorder.captureAudio());
- 
-        button.setOnMouseReleased(event -> responseMaster());
- 
-        flowPane.setOnKeyPressed(event -> voiceRecorder.captureAudio());
- 
-        flowPane.setOnKeyReleased(event -> responseMaster());
- 
-        primaryStage.setScene(new Scene(flowPane));
-        primaryStage.show();
-    }
+//    public void start(Stage primaryStage) {
+//        Label label = new Label("按住按钮或者按住Ctrl说话");
+//        Button button = new Button("按住说话");
+//        FlowPane flowPane = new FlowPane(label, button);
+//        flowPane.setAlignment(Pos.CENTER);
+//        flowPane.setOrientation(Orientation.HORIZONTAL);
+//        flowPane.setPrefHeight(80);
+//        flowPane.setPrefWidth(200);
+//        flowPane.setVgap(20);
+// 
+//        button.setOnMousePressed(event -> voiceRecorder.captureAudio());
+// 
+//        button.setOnMouseReleased(event -> responseMaster());
+// 
+//        flowPane.setOnKeyPressed(event -> voiceRecorder.captureAudio());
+// 
+//        flowPane.setOnKeyReleased(event -> responseMaster());
+// 
+//        primaryStage.setScene(new Scene(flowPane));
+//        primaryStage.show();
+//    }
  
     public String responseMaster() {
         voiceRecorder.closeCaptureAudio();
