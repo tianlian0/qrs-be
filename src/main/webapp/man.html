@@ -26,11 +26,11 @@
                     if (info.code == 200) {
                         updateUserList();
                     } else {
-                        alert("添加失败");
+                        alert("添加失败，请站在摄像头前");
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("添加失败，请重试！");
+                    alert("添加失败，请站在摄像头前！");
                 },
             });
         }
@@ -46,11 +46,11 @@
                         //updateUserList();
                         alert("更新成功");
                     } else {
-                        alert("更新失败，请重试！");
+                        alert("更新失败，请站在摄像头前！");
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("更新失败，请重试！");
+                    alert("更新失败，请站在摄像头前！");
                 },
             })
         }
