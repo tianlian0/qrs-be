@@ -5,11 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bjtu.ApplicationEntryPoint;
- 
-/**
- * 输入你的沟通语句，返回应答
- * 包含丰富的语料库，即使同一个沟通语句，也有不同的回答
- */
+
 public class TulingCommunicationByText {
     private static final String requestUrl = "http://openapi.tuling123.com/openapi/api/v2";
 
@@ -19,12 +15,6 @@ public class TulingCommunicationByText {
     private static final String contentType = "text/plain";
  
     private static final String encoding = getContentType();
- 
-//    public static void main(String[] args){
-//        TulingCommunicationByText tulingCommunicationByText = new TulingCommunicationByText();
-//        String response = tulingCommunicationByText.getResponse("哈哈哈哈哈哈你快乐吗");
-//        System.out.println(response);
-//    }
  
     public String getResponse(String request){
         JSONObject perception = new JSONObject();

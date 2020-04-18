@@ -1,7 +1,6 @@
 package com.bjtu.service;
 
 import java.io.File;
-//import java.util.Scanner;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -15,27 +14,6 @@ import javax.sound.sampled.TargetDataLine;
 public class VoiceRecorder{
     AudioFormat audioFormat;
     TargetDataLine targetDataLine;
- 
-//    public static void main(String args[]) {
-//        // 控制台方式
-//        new VoiceRecorder().voiceRecorderInConsole();
-//    }
-// 
-//    public void voiceRecorderInConsole() {
-//        System.out.println("y开始n结束");
-//        Scanner input = new Scanner(System.in);
-//        String Sinput = input.next();
-//        long testtime = System.currentTimeMillis();
-//        if(Sinput.equals("y")){
-//            captureAudio();// 调用录音方法
-//        }
-//        Scanner input_2 = new Scanner(System.in);
-//        String Sinput_2 = input_2.next();
-//        if(Sinput_2.equals("n")){
-//            closeCaptureAudio();
-//        }
-//        System.out.println("录音了"+(System.currentTimeMillis()-testtime)/1000+"秒！");
-//    }
  
     public void closeCaptureAudio(){
         targetDataLine.stop();
