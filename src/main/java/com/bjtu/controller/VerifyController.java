@@ -1,5 +1,9 @@
 package com.bjtu.controller;
 
+import java.awt.Toolkit;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,8 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bjtu.ApplicationEntryPoint;
 import com.bjtu.service.TulingCommunicationByVoice;
 
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+
 @Controller
 public class VerifyController {
+	
+	private static String beepPath = "C:\\Users\\liu13\\Desktop\\beep.mp3";
 
     //全局数据库链接
     private static Connection conn = null;
@@ -87,6 +96,13 @@ public class VerifyController {
         VerifyController.flag = false;
         while (true) {
             TulingCommunicationByVoice test = new TulingCommunicationByVoice();
+            
+			try {
+				BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(beepPath));
+	            Player player = new Player(buffer);
+	            player.play();
+			} catch (Exception e1) {}
+
             test.voiceRecorder.captureAudio();
             try {
                 Thread.sleep(Integer.valueOf(rtime));

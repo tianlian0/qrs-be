@@ -8,7 +8,6 @@ import java.io.File;
  
 /**
  * 识别WAV文件，上传百度服务器，返回结果
- * @author haoranhaoshi
  */
 public class VoiceRecognition {
     // 设置APPID/AK/SK

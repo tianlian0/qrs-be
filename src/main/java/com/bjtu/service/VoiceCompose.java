@@ -14,11 +14,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
- 
-/**
- * 将文本上传至百度服务器，返回语音文件，如output.mp3，并播放MP3文件
- * SDK下载地址：https://ai.baidu.com/file/EDF42F3DB3B4489FA1A88FD1E2BC5D74
- */
+
 public class VoiceCompose {
     // 设置APPID/AK/SK
     public static final String APP_ID = AppInfoConfig.getBaiduVoiceAppId();
