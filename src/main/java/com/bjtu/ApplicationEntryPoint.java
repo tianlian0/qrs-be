@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.bjtu.service.HttpUtil;
-import com.bjtu.service.TulingCommunicationByVoice;
 
 @SpringBootApplication
 public class ApplicationEntryPoint {

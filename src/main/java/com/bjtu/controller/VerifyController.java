@@ -1,9 +1,7 @@
 package com.bjtu.controller;
 
-import java.awt.Toolkit;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bjtu.ApplicationEntryPoint;
 import com.bjtu.service.TulingCommunicationByVoice;
 
-import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 @Controller
