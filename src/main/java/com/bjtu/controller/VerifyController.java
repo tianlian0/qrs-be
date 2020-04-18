@@ -94,25 +94,47 @@ public class VerifyController {
             return resMap;
         }
         VerifyController.flag = false;
+
+        TulingCommunicationByVoice test = new TulingCommunicationByVoice();
+        
         while (true) {
-            TulingCommunicationByVoice test = new TulingCommunicationByVoice();
-            
+        	Player player = null;
+        	BufferedInputStream buffer = null;
 			try {
-				BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(beepPath));
-	            Player player = new Player(buffer);
-	            player.play();
+				if (buffer == null) {
+					buffer = new BufferedInputStream(new FileInputStream(beepPath));
+				}
+				if (player == null) {
+					player = new Player(buffer);
+				}
+				player.play(30);
 			} catch (Exception e1) {}
 
             test.voiceRecorder.captureAudio();
             try {
+            	if (player != null) {
+                	player.close();
+                	player = null;
+				}
+            	if (buffer != null) {
+            		buffer.close();
+            		buffer = null;
+				}
+				if (buffer == null) {
+					buffer = new BufferedInputStream(new FileInputStream(beepPath));
+				}
+				if (player == null) {
+					player = new Player(buffer);
+				}
                 Thread.sleep(Integer.valueOf(rtime));
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             if (test.responseMaster() == null) {
                 break;
             }
         }
+        
         VerifyController.flag = true;
         resMap.put("code", "0");
         resMap.put("msg", "对话结束");
